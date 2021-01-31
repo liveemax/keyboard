@@ -1,25 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import {BrowserRouter} from "react-router-dom";
+import Main from "./component/Main/Main.jsx";
+import Advertising from "./component/Advertising/Advertising.jsx";
+import Aside from "./component/Aside/Aside.jsx";
+import Footer from "./component/Footer/Footer.jsx";
+import "./App.css"
+import store from "./redux/store.js";
+import Header from "./component/Header/Header.jsx";
+import {Provider} from "react-redux";
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <div className={"theme"}>
+            <Header/>
+            <Advertising/>
+            <Main/>
+            <Aside/>
+            <Footer/>
+        </div>
+    );
 }
 
+
+export const KeyBoard = () => {
+    return (
+        <BrowserRouter>
+            <Provider store={store}>
+                <App/>
+            </Provider>
+        </BrowserRouter>
+    )
+}
 export default App;

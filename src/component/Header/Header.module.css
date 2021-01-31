@@ -1,0 +1,7 @@
+.align {
+    text-align: center;
+    grid-area: header;
+}
+.align img {
+    max-height: 150px;
+}

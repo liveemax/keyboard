@@ -1,12 +1,11 @@
-import React from "react";
 import {combineReducers} from "redux";
 import headerReducer from "./header-reducer.js";
 import {createStore} from "redux";
-import complexityReducer from "./complexityReducer.js";
+import inputReducer from "./input-reducer.js";
 
 let reducers=combineReducers({
 headerKeyboard:headerReducer,
-    complexityKeyboard:complexityReducer,
+inputKeyboard:inputReducer,
 })
 
 

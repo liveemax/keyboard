@@ -66,10 +66,15 @@
     justify-content: center;
 }
 
-.typeText p {
-    width: 500px;
+.typeText textarea {
+    width: 60%;
     text-align: center;
     padding: 20px;
+    border: none;
+    outline: none;
+    font-size: 30px;
+    resize: none;
+    background-color: white;
 }
 .keyboard  {
     display: flex;

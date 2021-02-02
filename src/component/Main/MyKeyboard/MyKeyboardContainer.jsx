@@ -1,4 +1,3 @@
-import React from "react";
 import MyKeyboard from "./MyKeyboard.jsx";
 import {connect} from "react-redux";
 
@@ -9,6 +8,6 @@ let mapStateToProps =(state)=>{
     }
 }
 let mapDispatchToProps =(dispatch)=>{
-
+return{}
 }
 export default connect(mapStateToProps,mapDispatchToProps)(MyKeyboard)

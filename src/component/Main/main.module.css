@@ -49,9 +49,18 @@
     justify-content: space-evenly;
 }
 .slider {
-    padding: 0 10px;
+    padding: 0 1px;
 }
-
+.button__wrapper{
+    cursor: pointer;
+}
+.button__group {
+    display: flex;
+}
+.button__group button{
+    min-width: 25px;
+    min-height: 20px;
+}
 .typeText {
     display: flex;
     justify-content: center;

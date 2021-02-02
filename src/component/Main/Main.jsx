@@ -1,21 +1,21 @@
 import React from "react";
 import Paper from "@material-ui/core/Paper";
 import classes from "./main.module.css"
-import ComplexityKeyboard from "./ComplexityKeyboard.jsx";
 import StatisticKeyboard from "./StatisticKeyboard.jsx";
 import InputKeyboard from "./InputKeyboard.jsx";
-import MyKeyboard from "./MyKeyboard.jsx";
 import HeaderContainer from "./HeaderKeyboard/HeaderContainer.jsx";
+import MyKeyboardContainer from "./MyKeyboard/MyKeyboardContainer.jsx";
+import ComplexityKeyboardContainer from "./ComplexityKeyboard/ComplexityKeyboardContainer.jsx";
 
 const Main = () => {
     return (
         <main className={classes.root}>
             <Paper className={classes.container__width}>
                 <HeaderContainer/>
-                <ComplexityKeyboard/>
+                <ComplexityKeyboardContainer/>
                 <StatisticKeyboard/>
                 <InputKeyboard/>
-                <MyKeyboard/>
+                <MyKeyboardContainer/>
             </Paper>
         </main>
 

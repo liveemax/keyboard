@@ -100,3 +100,35 @@
     justify-content: center;
     margin-bottom: 3px;
 }
+.letter{
+    width: 10px;
+    border: none;
+    outline: none;
+    font-size: 20px;
+}
+.letterAfterClick{
+
+}
+.tapeToInput{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.tape{
+    min-height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.tape form{
+    opacity: 0.2;
+    text-align: center;
+}
+.smallStatistic{
+    display: flex;
+    justify-content: space-evenly;
+}

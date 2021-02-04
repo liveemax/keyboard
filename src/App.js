@@ -8,11 +8,14 @@ import "./App.css"
 import store from "./redux/store.js";
 import Header from "./component/Header/Header.jsx";
 import {Provider} from "react-redux";
+import handlerClickApp from "./handlerClickApp.jsx";
 
 
 function App() {
+    debugger
     return (
-        <div className={"theme"}>
+
+        <div className={"theme"} >
             <Header/>
             <Advertising/>
             <Main/>

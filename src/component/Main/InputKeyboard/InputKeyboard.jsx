@@ -1,54 +1,50 @@
 import React from 'react';
-import {Formik} from "formik";
-import {Form} from "formik";
 import {useState} from "react";
-import MyTextArea from "./MyTextArea.jsx"
+import {useEffect} from "react";
 import classes from "../main.module.css";
 import whereNewRow from "./whereNewRow.jsx";
-import {useEffect} from "react";
-import handlerClick from "./handlerClick.jsx";
-import Speed from "./Speed.jsx";
+import ClickMeToTape from "./ClickMeToTape.jsx";
+import SmallStatistic from "./SmallStatistic.jsx";
+import handleChange from "./handleChange.js";
 
-const InputKeyboard = (state) => {
+const InputKeyboard = (props) => {
 
     const [currentError, setCurrentError] = useState(0)
-    const [speed, setSpeed] = useState("0")
+    const [speed, setSpeed] = useState(0)
     const [currentLetter, setLetter] = useState(0)
     const [firstTime, setFirstTime] = useState(0)
-    useEffect(()=>{
-
+    useEffect(() => {
         document.getElementById("0").focus()
-    },[state.allText])
+        if (speed === 0)
+            document.getElementById("0").blur()
+    }, [props.allText])
     return (
-        <div >
+        <div>
             <div className={classes.smallStatistic}>
-                <span>Speed:{<Speed speed={speed} currentLetter={currentLetter}/>}</span>
-                <span>Error:{currentError}</span>
+                <SmallStatistic currentError={currentError} speed={speed} currentLetter={currentLetter}/>
             </div>
-
-            <Formik initialValues={{}}>
-                <div className={classes.tape}>
-                <Form>
+            <div className={classes.tape}>
+                <form id={"form"}>
                     {
-                        state.allText[0].split("").filter(whereNewRow)
-                            .map((element, index) => {
-                                return (
-                                    <>{<MyTextArea setAllText={state.setAllText} setFirstTime={setFirstTime} firstTime={firstTime}
-                                                   counterLetter={currentLetter} setLetter={setLetter}
-                                                   setSpeed={setSpeed}
-                                                   speed={speed} currentError={currentError}
-                                                   setCurrentError={setCurrentError} name={index} value={element}/>
-                                    }
-                                    </>
-                                )
-                            })}
-                </Form>
-                    {
+                        props.allText[0].split("").filter(whereNewRow(props.separator)).map((element, index) => {
+                                if (element === "/n") {
+                                    return (
+                                        <>
+                                            <input key={index} id={index} value={" "} className={classes.letter}
+                                                   onChange={(e) => (handleChange(e, currentLetter, setFirstTime, setSpeed, firstTime, setLetter, props.setAllText, props.alphabet, setCurrentError, currentError,props.setSpeedType,props.setErrorCount,props.setCurrentLetter))}/>,
+                                            <i style={{display: "block"}}></i>
+                                        </>
+                                    )
+                                } else return (<input value={element} key={index} id={index} className={classes.letter}
+                                                      onChange={(e) => (handleChange(e, currentLetter, setFirstTime, setSpeed, firstTime, setLetter, props.setAllText, props.alphabet, setCurrentError, currentError,props.setSpeedType,props.setErrorCount,props.setCurrentLetter))}/>)
 
+                            }
+                        )
                     }
-                    <div className={classes.tapeToInput} onClick={(e)=>(handlerClick(e,state.setInputAvailable,state.isInputAvailable,setCurrentError))}><p>Click me to tape!</p></div>
-                </div>
-            </Formik>
+                </form>
+                <ClickMeToTape setInputAvailable={props.setInputAvailable} isInputAvailable={props.isInputAvailable}
+                               setCurrentError={setCurrentError}/>
+            </div>
         </div>
     );
 }

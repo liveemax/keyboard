@@ -5,19 +5,12 @@ import LanguageIcon from "@material-ui/icons/Language.js";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import KeyboardIcon from "@material-ui/icons/Keyboard.js";
+import {menuPosition} from "./menuPosition.js";
 
 const HeaderKeyboard = (state) => {
     const [positionMenu, setPosition] = React.useState(null);
-    const open = Boolean(positionMenu);
-    const menuOpen = (event) => {
-        setPosition(event.currentTarget);
-    };
-    const menuClose = (e) => {
-        setPosition(null);
-        e.currentTarget.innerText && state.newLanguage(e.currentTarget.innerText);
-    };
+    let {open,menuClose,menuOpen}=menuPosition(positionMenu,setPosition,state.setNewLanguage);
     return (
-
         <div className={classes.container}>
             <div>
                 <IconButton onClick={menuOpen}>

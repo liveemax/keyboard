@@ -1,22 +1,23 @@
+import {getNewText} from "./getNewText.js";
+
 const SET_ALL_TEXT="SET_ALL_TEXT"
 const SET_INPUT_AVAILABLE='SET_INPUT_AVAILABLE'
 const initialState={
-    allText:["asdasdasdafas das asd asdsfdgdfv dsdsaf as dasasdasd as asdsafgbv b ghkhfsfasdasdxcvf as"],
-    isInputAvailable:false
+    allText:["asd"],
+    isInputAvailable:false,
+    separator:15
 }
-
 const inputReducer=(state=initialState,action)=>{
 
     switch (action.type){
         case SET_ALL_TEXT:
             return {
                 ...state,
-                allText: ["sdasdaa a das asd asf sf sf asd as dasd asd as d"]
             }
         case SET_INPUT_AVAILABLE:
             return {
                 ...state,
-                isInputAvailable: !state.isInputAvailable
+                isInputAvailable: action.isInputAvailable
             }
         default:
             return{
@@ -24,10 +25,17 @@ const inputReducer=(state=initialState,action)=>{
             }
     }
 }
+export const allTextAC=()=>{return{type:SET_ALL_TEXT,}}
+export const inputAvailableAC=(isInputAvailable)=>{return{type:SET_INPUT_AVAILABLE,isInputAvailable}}
 
-
-export const setAllText=()=>{return{type:SET_ALL_TEXT}}
-export const setInputAvailable=()=>{return{type:SET_INPUT_AVAILABLE}}
+export const setAllText=(action)=>{
+        getNewText(action)
+        return(dispatch)=>(dispatch(allTextAC())
+    )
+}
+export const setInputAvailable =(isInputAvailable) => {
+    return (dispatch)=>(dispatch(inputAvailableAC(isInputAvailable)))
+}
 
 
 export default inputReducer

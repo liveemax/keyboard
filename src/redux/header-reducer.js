@@ -1,135 +1,47 @@
 import getKeyComplexity from "./getKeyComplexity.js";
+import {getAlphabet} from "./getAlphabet.js";
+import getCurrentIndex from "./getCurrentIndex.js";
 
 const SELECT_LANGUAGE = "SELECT_LANGUAGE";
 const SELECT_KEYBOARD = "SELECT_KEYBOARD";
-const SET_SLIDER_VALUE = "SET_SLIDER_VALUE";
-const SET_VALUE_DISABLE = "SET_VALUE_DISABLE"
+const SELECT_SLIDER_VALUE = "SELECT_SLIDER_VALUE";
+const SELECT_SPEED_TYPE = "SELECT_SPEED_TYPE";
+const SELECT_ERROR_COUNT = "SELECT_ERROR_COUNT";
+const SELECT_VALUE_DISABLE = "SELECT_VALUE_DISABLE";
+const SELECT_CURRENT_LETTER = "SELECT_CURRENT_LETTER";
+let alphabet = JSON.parse(JSON.stringify(getAlphabet()));
 const initialState = {
-    allLang: {
-        /*   'ALBANIAN': 'sq',
-           'ARABIC': 'ar',
-           'ARMENIAN_EASTERN': 'hy_east',
-           'ARMENIAN_WESTERN': 'hy_west',
-           'BASQUE': 'eu',
-           'BELARUSIAN': 'be',
-           'BENGALI_PHONETIC': 'bn_phone',
-           'BOSNIAN': 'bs',
-           'BRAZILIAN_PORTUGUESE': 'pt_br',
-           'BULGARIAN': 'bg',
-           'CATALAN': 'ca',
-           'CHEROKEE': 'chr',
-           'CROATIAN': 'hr',
-           'CZECH': 'cs',
-           'CZECH_QWERTZ': 'cs_qwertz',
-           'DANISH': 'da',
-           'DARI': 'prs',
-           'DUTCH': 'nl',
-           'DEVANAGARI_PHONETIC': 'deva_phone',*/
-        'ENGLISH': {
-            alphabet: {
-                0: {letter: "Q", disable: false},
-                1: {letter: "W", disable: false},
-                2: {letter: "E", disable: false},
-                3: {letter: "R", disable: false},
-                4: {letter: "T", disable: false},
-                5: {letter: "Y", disable: false},
-                6: {letter: "U", disable: false},
-                7: {letter: "I", disable: false},
-                8: {letter: "O", disable: false},
-                9: {letter: "P", disable: false},
-                20: {letter: "A", disable: false},
-                21: {letter: "S", disable: false},
-                22: {letter: "D", disable: false},
-                23: {letter: "F", disable: false},
-                24: {letter: "G", disable: false},
-                25: {letter: "H", disable: false},
-                26: {letter: "J", disable: false},
-                27: {letter: "K", disable: false},
-                28: {letter: "L", disable: false},
-                40: {letter: "Z", disable: false},
-                41: {letter: "X", disable: false},
-                42: {letter: "C", disable: false},
-                43: {letter: "V", disable: false},
-                44: {letter: "B", disable: false},
-                45: {letter: "N", disable: false},
-                46: {letter: "M", disable: false},
-                60: {letter: ",.!?", disable: false},
-                61: {letter: ";:][", disable: false},
-            }
-        }
-        /*'ESTONIAN': 'et',
-        'ETHIOPIC': 'ethi',
-        'FINNISH': 'fi',
-        'FRENCH': 'fr',
-        'GALICIAN': 'gl',
-        'GEORGIAN_QWERTY': 'ka_qwerty',
-        'GEORGIAN_TYPEWRITER': 'ka_typewriter',
-        'GERMAN': 'de',
-        'GREEK': 'el',
-        'GUJARATI_PHONETIC': 'gu_phone',
-        'GURMUKHI_PHONETIC': 'guru_phone',
-        'HEBREW': 'he',
-        'HINDI': 'hi',
-        'HUNGARIAN_101': 'hu_101',
-        'ICELANDIC': 'is',
-        'ITALIAN': 'it',
-        'KANNADA_PHONETIC': 'kn_phone',
-        'KAZAKH': 'kk',
-        'KHMER': 'km',
-        'KOREAN': 'ko',
-        'KYRGYZ': 'ky_cyrl',
-        'LAO': 'lo',
-        'LATVIAN': 'lv',
-        'LITHUANIAN': 'lt',
-        'MACEDONIAN': 'mk',
-        'MALAYALAM_PHONETIC': 'ml_phone',
-        'MALTESE': 'mt',
-        'MONGOLIAN_CYRILLIC': 'mn_cyrl',
-        'MONTENEGRIN': 'srp',
-        'NORWEGIAN': 'no',
-        'ORIYA_PHONETIC': 'or_phone',
-        'PAN_AFRICA_LATIN': 'latn_002',
-        'PASHTO': 'ps',
-        'PERSIAN': 'fa',
-        'POLISH': 'pl',
-        'PORTUGUESE': 'pt_pt',
-        'ROMANI': 'rom',
-        'ROMANIAN': 'ro',
-        'RUSSIAN': 'ru',
-        'SANSKRIT_PHONETIC': 'sa_phone',
-        'SERBIAN_CYRILLIC': 'sr_cyrl',
-        'SERBIAN_LATIN': 'sr_latn',
-        'SINHALA': 'si',
-        'SLOVAK': 'sk',
-        'SLOVAK_QWERTY': 'sk_qwerty',
-        'SLOVENIAN': 'sl',
-        'SOUTHERN_UZBEK': 'uzs',
-        'SPANISH': 'es_es',
-        'SWEDISH': 'sv',
-        'TAMIL_PHONETIC': 'ta_phone',
-        'TATAR': 'tt',
-        'TELUGU_PHONETIC': 'te_phone',
-        'THAI': 'th',
-        'TURKISH_F': 'tr_f',
-        'TURKISH_Q': 'tr_q',
-        'UIGHUR': 'ug',
-        'UKRAINIAN_101': 'uk_101',
-        'URDU': 'ur',
-        'UZBEK_LATIN': 'uz_latn',
-        'UZBEK_CYRILLIC_PHONETIC': 'uz_cyrl_phone',
-        'UZBEK_CYRILLIC_TYPEWRITTER': 'uz_cyrl_type',
-        'VIETNAMESE_TCVN': 'vi_tcvn',
-        'VIETNAMESE_TELEX': 'vi_telex',
-        'VIETNAMESE_VIQR': 'vi_viqr'*/
-    },
+    ...alphabet,
     currentLang: ["ENGLISH"],
     isKeyboardHidden: false,
     sliderValue: [0, 100],
+    currentLetter: " "
 }
 
 const headerReducer = (state = initialState, action) => {
-    let stateCopy=JSON.parse(JSON.stringify(state));
+    let stateCopy = JSON.parse(JSON.stringify(state));
+    let currentIndex=0
     switch (action.type) {
+        case SELECT_SPEED_TYPE:
+            currentIndex=getCurrentIndex(stateCopy)
+            stateCopy.allLang[state.currentLang].alphabet[currentIndex].speedType=action.speedType
+            stateCopy.allLang[state.currentLang].alphabet[currentIndex].typeCounter=stateCopy.allLang[state.currentLang].alphabet[currentIndex].typeCounter+1;
+            return {
+                ...stateCopy,
+            }
+        case SELECT_CURRENT_LETTER:
+            action.currentLetter=action.currentLetter.toUpperCase()
+            return {
+                ...state,
+                currentLetter: action.currentLetter
+            }
+        case SELECT_ERROR_COUNT:
+            currentIndex=getCurrentIndex(stateCopy)
+            stateCopy.allLang[state.currentLang].alphabet[currentIndex].errorCount=stateCopy.allLang[state.currentLang].alphabet[currentIndex].errorCount+1
+            debugger
+            return {
+                ...stateCopy
+            }
         case SELECT_LANGUAGE:
             return {
                 ...state,
@@ -140,29 +52,51 @@ const headerReducer = (state = initialState, action) => {
                 ...state,
                 isKeyboardHidden: !(state.isKeyboardHidden),
             }
-        case SET_SLIDER_VALUE:
-            stateCopy=getKeyComplexity(stateCopy,action)
+        case SELECT_SLIDER_VALUE:
+            stateCopy = getKeyComplexity(stateCopy, action)
             return {
                 ...stateCopy,
                 sliderValue: action.valueSlider
             }
-        case SET_VALUE_DISABLE:
+        case SELECT_VALUE_DISABLE:
             let buttonDisable = stateCopy.allLang[state.currentLang].alphabet[action.valueDisable].disable;
             stateCopy.allLang[state.currentLang].alphabet[action.valueDisable].disable = !buttonDisable;
             return {
                 ...stateCopy
             }
-
         default:
             return {...state};
     }
 }
 
 
-export const selectLanguage = (newLanguage) => ({type: SELECT_LANGUAGE, newLanguage})
-export const selectKeyboard = (isKeyboardHidden) => ({type: SELECT_KEYBOARD, isKeyboardHidden})
-export const setSliderValue = (valueSlider) => ({type: SET_SLIDER_VALUE, valueSlider})
-export const setValueDisable = (valueDisable) => ({type: SET_VALUE_DISABLE, valueDisable})
+export const selectLanguageAC = (newLanguage) => ({type: SELECT_LANGUAGE, newLanguage})
+export const selectKeyboardAC = (isKeyboardHidden) => ({type: SELECT_KEYBOARD, isKeyboardHidden})
+export const selectSpeedTypeAC = (speedType) => ({type: SELECT_SPEED_TYPE, speedType})
+export const selectErrorCountAC = () => ({type: SELECT_ERROR_COUNT})
+export const selectCurrentLetterAC = (currentLetter) => ({type: SELECT_CURRENT_LETTER, currentLetter})
 
 
+
+export const setSliderValue = (valueSlider) => ({type: SELECT_SLIDER_VALUE, valueSlider})
+export const setValueDisable = (valueDisable) => ({type: SELECT_VALUE_DISABLE, valueDisable})
+
+export const setSpeedType = (speedType) => {
+    return(dispatch)=>{(dispatch(selectSpeedTypeAC(speedType)))}
+}
+export const setErrorCount = () => {
+    return(dispatch)=>{(dispatch(selectErrorCountAC()))}
+}
+export const setCurrentLetter = (typeCounter) => {
+    return(dispatch)=>{(dispatch(selectCurrentLetterAC(typeCounter)))}
+}
+export const setIsKeyboardHidden = (isKeyboardHidden) => {
+    return (dispatch)=>{dispatch(selectKeyboardAC(isKeyboardHidden))
+    }
+}
+export const setNewLanguage = (newLanguage) => {
+    return (dispatch) => {
+        (dispatch(selectLanguageAC(newLanguage)))
+    }
+}
 export default headerReducer;

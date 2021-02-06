@@ -9,30 +9,38 @@ import store from "./redux/store.js";
 import Header from "./component/Header/Header.jsx";
 import {Provider} from "react-redux";
 import handlerClickApp from "./handlerClickApp.jsx";
+import {connect} from "react-redux";
+import {setInputAvailable} from "./redux/input-reducer.js";
 
 
-function App() {
-    debugger
-    return (
+const App=(props)=> {
+        return (
+            <div className={"theme"} onClick={(e)=>{handlerClickApp(e,props.isInputAvailable,props.setInputAvailable)}}>
+                <Header/>
+                <Advertising/>
+                <Main/>
+                <Aside/>
+                <Footer/>
+            </div>
+        );
 
-        <div className={"theme"} >
-            <Header/>
-            <Advertising/>
-            <Main/>
-            <Aside/>
-            <Footer/>
-        </div>
-    );
+    }
+
+const mapStateToProps=(props)=>{
+    return  {props:props,
+        isInputAvailable: props.inputKeyboard.isInputAvailable
+    }
 }
+export const AppContainer=connect(mapStateToProps,{setInputAvailable})(App)
 
+const KeyBoard = (props) => {
 
-export const KeyBoard = () => {
     return (
         <BrowserRouter>
             <Provider store={store}>
-                <App/>
+                <AppContainer/>
             </Provider>
         </BrowserRouter>
     )
 }
-export default App;
+export default KeyBoard

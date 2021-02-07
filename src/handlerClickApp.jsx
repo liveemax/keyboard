@@ -1,8 +1,7 @@
-import store from "./redux/store.js";
 
 let handlerClickApp=(e,isInputAvailable,setInputAvailable)=>{
     let form=document.getElementById("form")
-    if(isInputAvailable) {
+    if(isInputAvailable===true) {
     setInputAvailable(false)
     form.style.opacity="0.2"
 }

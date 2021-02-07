@@ -14,7 +14,8 @@ import {setInputAvailable} from "./redux/input-reducer.js";
 
 
 const App=(props)=> {
-        return (
+
+    return (
             <div className={"theme"} onClick={(e)=>{handlerClickApp(e,props.isInputAvailable,props.setInputAvailable)}}>
                 <Header/>
                 <Advertising/>

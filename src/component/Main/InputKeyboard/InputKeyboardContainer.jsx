@@ -1,14 +1,14 @@
 import InputKeyboard from "./InputKeyboard.jsx";
 import {connect} from "react-redux";
-import {setAllText} from "../../../redux/input-reducer.js";
 import {setInputAvailable} from "../../../redux/input-reducer.js";
 import {setSpeedType} from "../../../redux/header-reducer.js";
 import {setErrorCount} from "../../../redux/header-reducer.js";
 import {setCurrentLetter} from "../../../redux/header-reducer.js";
+import {setAllText} from "../../../redux/header-reducer.js";
 
 let mapStateToProps = (state) => {
     return {
-        allText: state.inputKeyboard.allText,
+        allText: state.headerKeyboard.allText,
         speed: state.inputKeyboard.speed,
         error: state.inputKeyboard.error,
         isInputAvailable: state.inputKeyboard.isInputAvailable,

@@ -2,14 +2,15 @@ const whereNewRow = (separator) => {
     return(el, index, arr)=>{
     if (index%separator===(separator-1)) {
         let step
-        for (step=0;arr[index+step]!==" ";step++) {
+        for (step=0;step!==arr.length;step++) {
             if(arr[index+step+1]===" ") {
-                arr[index + step + 1] = "/n"
+                let slice=arr.slice(index+step+1,arr.length)
+                arr[index + step+1 ] = "/n"
                 break
             }
         }
     }
-    return el
+    return true
 }
 }
 export default whereNewRow

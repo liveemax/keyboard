@@ -1,9 +1,21 @@
-import classes from "../main.module.css";
 import handlerClick from "./handlerClick.jsx";
 import React from "react";
+import {makeStyles} from "@material-ui/core";
+const useStyle=makeStyles({
+    tapeToInput:{
+    position: "absolute",
+    width: "100%",
+    height: "100%",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    cursor: "pointer",
+}
+})
 
 
 let ClickMeToTape=(state)=>{
+    const classes=useStyle()
     if(state.isInputAvailable===false)
     return(
         <>

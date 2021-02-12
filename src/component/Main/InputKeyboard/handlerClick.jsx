@@ -10,6 +10,5 @@ const handlerClick=(e,setAllText,alphabet,setLetter,setInputAvailable,isInputAva
         setAllText(alphabet)
     }
 
-
 }
 export default handlerClick

@@ -1,29 +1,77 @@
 import React from 'react';
 import {useState} from "react";
 import {useEffect} from "react";
-import classes from "../main.module.css";
+import {useReducer} from "react";
 import whereNewRow from "./whereNewRow.jsx";
 import ClickMeToTape from "./ClickMeToTape.jsx";
-import SmallStatistic from "./SmallStatistic.jsx";
+import SmallStatistic from "./SmallStatistic/SmallStatistic.jsx";
 import handleChange from "./handleChange/handleChange.js";
+import {makeStyles} from "@material-ui/core";
+
+const useStyle = makeStyles({
+root:{
+    paddingBottom:"20px",
+},
+    smallStatistic: {
+        display: "flex",
+        justifyContent: " space-evenly",
+        paddingTop: "15px",
+    },
+
+    tape:{
+        minHeight: "150px",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        position: "relative",
+        "& form": {
+            opacity: " 0.2",
+            textAlign: "center",
+        }
+    },
+
+    letter:{
+    maxWidth: "30px",
+    padding: "0px",
+    border: "none",
+    outline: "none",
+    fontSize: "30px",
+}
+
+})
+
+
+function init(setLocalSpeed) {
+    return {speed: setLocalSpeed};
+}
+
+function reducer(state, action) {
+    switch (action.type) {
+        case "SET_SPEED": {
+            let newSpeed = state.speed.unshift(action.time)
+            if (newSpeed > 20) state.speed.pop()
+            return {...state}
+        }
+        default :
+            return {}
+    }
+}
 
 const InputKeyboard = (props) => {
-    debugger
+    const classes = useStyle()
     const [currentError, setCurrentError] = useState(0)
-    const [speed, setSpeed] = useState(0)
+    const [state, dispatch] = useReducer(reducer, [0], init)
     const [currentLetter, setLetter] = useState(0)
-    const [firstTime, setFirstTime] = useState(0)
-    const [lastKeyType, setLastKeyType] = useState(0)
     useEffect(() => {
-        document.getElementById(`${currentLetter}`).focus()
-    }, [currentLetter])
-    useEffect(() => {
-        document.getElementById(`${currentLetter}`).blur()
-    }, [])
+        if (props.allText[0] !== "ALL BUTTON WAS DISABLE" && props.isInputAvailable === true) {
+            document.getElementById(`${currentLetter}`).focus()
+        }
+        else document.getElementById(`${currentLetter}`).blur()
+    }, [props.isInputAvailable, props.allText, currentLetter])
     return (
-        <div>
+        <div className={classes.root}>
             <div className={classes.smallStatistic}>
-                <SmallStatistic currentError={currentError} speed={speed} currentLetter={currentLetter}/>
+                <SmallStatistic currentError={currentError} speed={state.speed}/>
             </div>
             <div className={classes.tape}>
                 <form id={"form"}>
@@ -32,7 +80,7 @@ const InputKeyboard = (props) => {
                                 if (element === "/n") {
                                     return (<>
                                             <input value={" "} key={index} id={index} className={classes.letter}
-                                                   onChange={(e) => (handleChange(e, lastKeyType, setLastKeyType, speed, currentLetter, setFirstTime, setSpeed, firstTime, setLetter, props.setAllText, props.alphabet, setCurrentError, currentError, props.setSpeedType, props.setErrorCount, props.setCurrentLetter))}/>
+                                                   onChange={(e) => (handleChange(e, props.setInitialTime, props.initialTime, state.speed, currentLetter, dispatch, setLetter, props.setAllText, props.alphabet, setCurrentError, currentError, props.setSpeedType, props.setErrorCount, props.setCurrentLetter))}/>
                                             <i style={{display: "block"}}></i>
                                         </>
                                     )
@@ -40,7 +88,7 @@ const InputKeyboard = (props) => {
                                 else {
                                     return (
                                         <input value={element} key={index} id={index} className={classes.letter}
-                                               onChange={(e) => (handleChange(e, lastKeyType, setLastKeyType, speed, currentLetter, setFirstTime, setSpeed, firstTime, setLetter, props.setAllText, props.alphabet, setCurrentError, currentError, props.setSpeedType, props.setErrorCount, props.setCurrentLetter))}/>)
+                                               onChange={(e) => (handleChange(e, props.setInitialTime, props.initialTime, state.speed, currentLetter, dispatch, setLetter, props.setAllText, props.alphabet, setCurrentError, currentError, props.setSpeedType, props.setErrorCount, props.setCurrentLetter))}/>)
                                 }
                             }
                         )

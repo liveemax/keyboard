@@ -1,13 +1,13 @@
-export const generateText=(arrNotDisableLetter,wordsInAllText)=>{
+import {intupArrInWordArr} from "./intupArrInWordArr.js";
 
-    let newText="";
-    for(let step=0;step!==6;step++){
-        newText+=arrNotDisableLetter[step].word
+export const generateText=(arrNotDisableLetter,wordsInAllText,punctuation,maxBadKeyInText)=>{
+    let newText=[];
+    if(arrNotDisableLetter[0]===""){
+        newText="ALL BUTTON WAS DISABLE";
+        return {newText}
     }
-    newText=newText.split(" ")
-    for(let step=0;step!==wordsInAllText;step++){
-        newText[step]=newText[Math.ceil(Math.random()*wordsInAllText)]
-    }
+    newText=intupArrInWordArr(arrNotDisableLetter,newText,punctuation,maxBadKeyInText)
+
     newText=newText.slice(0,wordsInAllText).join(" ")
-    return newText
+    return {newText}
 }

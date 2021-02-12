@@ -1,7 +1,20 @@
 import React from "react";
-import header from "./Header.module.css"
+import {makeStyles} from "@material-ui/core";
+
+const useStyle = makeStyles({
+    align: {
+        display:"flex",
+        justifyContent:"center",
+        padding:"15px 0",
+        "& img": {
+            maxHeight: "150px",
+        },
+        borderBottom:"1px solid #eee"
+    }
+})
 
 const Header = () => {
+    const header = useStyle()
     return (
         <header className={header.align}>
             <img alt={"some "}

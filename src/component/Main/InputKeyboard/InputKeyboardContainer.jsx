@@ -5,6 +5,7 @@ import {setSpeedType} from "../../../redux/header-reducer.js";
 import {setErrorCount} from "../../../redux/header-reducer.js";
 import {setCurrentLetter} from "../../../redux/header-reducer.js";
 import {setAllText} from "../../../redux/header-reducer.js";
+import {setInitialTime} from "../../../redux/header-reducer.js";
 
 let mapStateToProps = (state) => {
     return {
@@ -14,7 +15,8 @@ let mapStateToProps = (state) => {
         isInputAvailable: state.inputKeyboard.isInputAvailable,
         alphabet:state.headerKeyboard.allLang[state.headerKeyboard.currentLang],
         separator:state.inputKeyboard.separator,
+        initialTime:state.headerKeyboard.initialTime,
     }
 }
 
-export default connect(mapStateToProps, {setAllText,setInputAvailable,setSpeedType,setErrorCount,setCurrentLetter})(InputKeyboard)
+export default connect(mapStateToProps, {setInitialTime,setAllText,setInputAvailable,setSpeedType,setErrorCount,setCurrentLetter})(InputKeyboard)

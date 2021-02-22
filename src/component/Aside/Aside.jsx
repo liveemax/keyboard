@@ -1,81 +1,87 @@
 import React from "react";
+import {speed} from "./speed.js";
 import {makeStyles} from '@material-ui/core/styles';
 import Tabs from "@material-ui/core/Tabs";
-import {TabPanel} from "./TabPanel.js";
+import Accordion from "@material-ui/core/Accordion";
+import AccordionSummary from "@material-ui/core/AccordionSummary";
 import Typography from "@material-ui/core/Typography";
-import {useState} from "react";
-import Zoom from "@material-ui/core/Zoom";
+import AccordionDetails from "@material-ui/core/AccordionDetails";
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
-const useStyles = makeStyles((theme) => ({
+
+const useStyles = makeStyles({
         root: {
-            position:"relative",
-            width: "100%"-"3px",
+            width:"100%",
             display: "flex",
             height: "600px",
             borderLeft: "3px solid #ccc",
             backgroundColor: "#eee",
-            "& p":{
-                width:"100%",
-                textAlign:"center"
+            textAlign: "center",
+            "& button": {
+                padding: "2px"
             }
-
         },
         heading: {
-            width: "100%",
-            backgroundColor:"transparent",
+            textAlign: "center",
+            width: "100%"
         },
 
-    tapeToInput:{
-            position:"absolute",
-        width: "100%",
-        height: "100%",
-        cursor: "pointer",
-        zIndex:2,
-        "& p":{
-            height:"100%",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-        },
     }
-    })
 );
-const handlerClickAside=(e,click,setClick)=>{
-    setClick(1)
-}
+
 const Aside = (state) => {
-    const [click,setClick]=useState(0.2)
+    const [expanded, setExpanded] = React.useState(false);
+    const handleChange1 = (panel) => (event, isExpanded) => {
+        debugger
+        setExpanded(isExpanded ? panel : false);
+    };
+
     const classes = useStyles();
     let statistic = state.statistic
+    let needMore = "0"
     let input = (statistic) => {
         if (statistic.length !== 0) {
             let output = []
             for (let [key, value] of Object.entries(statistic)) {
-                if(value.typeScore===999)
-                    value.typeScore=0
+                if (value.typeScore === 999)
+                    value.typeScore = needMore
                 output[key] =
-                    [
-                        <TabPanel value={value} key1={key} >
-                        </TabPanel>
+                    [<div style={{width: "100%"}}>
+                        <Accordion  expanded={expanded === key} onChange={handleChange1(key)} >
+                            <AccordionSummary key={Math.random()}
+                                expandIcon={<ExpandMoreIcon/>}
+                                aria-controls="panel4bh-content"
+                                id="panel4bh-header"
+                            >
+                                <Typography key={Math.random()}  className={classes.heading}>{value.letter}</Typography>
+                            </AccordionSummary>
+                            <AccordionDetails key={Math.random()}>
+                                typeScore:${value.typeScore}
+                            </AccordionDetails>
+                            <AccordionDetails key={Math.random()}>
+                                typeCounter:${value.typeCounter}
+                            </AccordionDetails>
+                            <AccordionDetails key={Math.random()}>
+                                errorCount:${value.errorCount}
+                            </AccordionDetails><AccordionDetails key={Math.random()}>
+                            speedType:${speed(value.speedType)}
+                        </AccordionDetails>
+
+                        </Accordion>
+                    </div>,
                     ]
             }
-            return output
+            return output.reverse()
         }
-        else return (["Need More Key"])
     }
 
     return (
         <aside className={classes.root}>
-            <Tabs style={{opacity:`${click}`}}  className={classes.heading} orientation="vertical"
+            <Tabs textColor={"inherit"} style={{width: "100%"}} orientation="vertical"
                   variant="scrollable"
-                    value={false}>
+                  value={1}>
                 {input(statistic)}
             </Tabs>
-                <Zoom in={click===0.2} >
-                    <div className={classes.tapeToInput}>
-                    <Typography onClick={(e)=>handlerClickAside(e,click,setClick)}>Statistic</Typography>
-                    </div>
-                </Zoom>
         </aside>
 
     );

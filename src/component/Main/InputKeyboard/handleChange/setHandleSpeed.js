@@ -1,9 +1,16 @@
 
 
-export const setHandleSpeed=(lastKeyType,speed,currentLetter,e,firstTime,setSpeedType,setSpeed)=>{
-    setSpeed(currentLetter / (e.timeStamp - firstTime))
-    if(((e.timeStamp - lastKeyType)/1000)>10){
-        setSpeedType(10)
+export const setHandleSpeed=(firstButton,setInitialTime,initialTime,setSpeedType,dispatch)=>{
+    let time=Date.now()
+    let ourTime=(time-initialTime)/1000;
+    setInitialTime(time)
+    dispatch({type:"SET_SPEED",time:time})
+    if(firstButton!==" ") {
+        if (ourTime > 3) {
+            setSpeedType(3)
+        }
+        else {
+            setSpeedType((ourTime).toFixed(2))
+        }
     }
-    else setSpeedType(((e.timeStamp - lastKeyType)/1000).toFixed(2))
 }

@@ -2,7 +2,7 @@
 const SET_INPUT_AVAILABLE='SET_INPUT_AVAILABLE'
 const initialState={
     isInputAvailable:false,
-    separator:15,    //>Start fraze
+    separator:10,    //>Start fraze
 }
 const inputReducer=(state=initialState,action)=>{
     switch (action.type){

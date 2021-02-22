@@ -1,8 +1,7 @@
-let getCurrentIndex=(stateCopy)=>{
+let getCurrentIndex=(currentAlphabet,currentLetter)=>{
     let currentIndex
-    let asd = stateCopy.allLang[stateCopy.currentLang].alphabet
-    for(let key in asd){
-        if(asd[key].letter===stateCopy.currentLetter.toUpperCase())
+    for(let key in currentAlphabet){
+        if(currentAlphabet[key].letter===currentLetter.toUpperCase())
         {
              currentIndex=key
             return currentIndex

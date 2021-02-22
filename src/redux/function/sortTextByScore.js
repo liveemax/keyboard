@@ -1,23 +1,17 @@
-export const sortTextByScore=(alphabet,)=>{
-    let arrNotDisableLetter = []
-    for (let key in alphabet) {
-        if (alphabet[key].disable === false && key < 60) {
+import {bubbleSort} from "./bubbleSort.js";
 
-            if (key === "0") {
-                arrNotDisableLetter[key] = alphabet[key]
-            }
-            else if (key > 5 && arrNotDisableLetter[5].speedType < alphabet[key].speedType) {
-                arrNotDisableLetter.unshift(alphabet[key])
-            }
-            else if (key <= 5) {
-                if (alphabet[key].speedType > arrNotDisableLetter[0].speedType) {
-                    arrNotDisableLetter.unshift(alphabet[key])
-                }
-                else {
-                    arrNotDisableLetter.push(alphabet[key])
-                }
-            }
+export const sortTextByScore = (alphabet) => {
+    let arrNotDisableLetter = [""]
+    let arrNotDisablePunkt = [""]
+    let step=0
+    let wrapper=60
+    for(let key in alphabet){
+        if(key>=wrapper&&alphabet[key].disable===false) {
+            arrNotDisablePunkt[key-wrapper]=alphabet[key]
+        }
+        else if(alphabet[key].disable===false) {arrNotDisableLetter[step]=alphabet[key] ;step++
         }
     }
-    return arrNotDisableLetter
+    arrNotDisableLetter=bubbleSort(arrNotDisableLetter)
+    return ({arrNotDisableLetter, punctuation: arrNotDisablePunkt})
 }

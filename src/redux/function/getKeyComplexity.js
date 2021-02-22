@@ -1,7 +1,7 @@
-function getKeyComplexity(stateCopy,action){
+function getKeyComplexity(currentAlphabet,action){
     let step
-    let arrKeys = Object.keys(stateCopy.allLang[stateCopy.currentLang].alphabet)
-    let arrKeysLength=Object.keys(stateCopy.allLang[stateCopy.currentLang].alphabet).length
+    let arrKeys = Object.keys(currentAlphabet)
+    let arrKeysLength=Object.keys(currentAlphabet).length
     let numberLetterSteps = 100 /arrKeysLength
     for (step = 1; arrKeysLength!==step; step++) {
         if(action.valueSlider[0] > numberLetterSteps * step)
@@ -14,16 +14,16 @@ function getKeyComplexity(stateCopy,action){
         }
     }
     step=0;
-    for (const [key, value] of Object.entries(stateCopy.allLang[stateCopy.currentLang].alphabet)) {
+    for (const [key, value] of Object.entries(currentAlphabet)) {
         if (arrKeys[step] !== key) {
-            stateCopy.allLang[stateCopy.currentLang].alphabet[key].disable = true;
+            currentAlphabet[key].disable = true;
             step--
         }
         else {
-            stateCopy.allLang[stateCopy.currentLang].alphabet[key].disable = false;
+            currentAlphabet[key].disable = false;
         }
         step++
     }
-    return stateCopy
+    return currentAlphabet
 }
 export default getKeyComplexity

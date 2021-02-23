@@ -3,6 +3,7 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import Slider from "@material-ui/core/Slider";
 import {makeStyles} from "@material-ui/core";
+import pxToRem from "../../../pxToRem.js";
 
 const useStyle = makeStyles({
     root: {
@@ -11,13 +12,6 @@ const useStyle = makeStyles({
         marginTop: "10px",
         borderBottom:"3px solid #fff",
         paddingBottom:"5px",
-        "& button": {
-            minWidth: "1rem",
-            height: "1rem",
-            border: "1px solid rgba(0, 0, 0, .23)",
-            padding: "1px",
-            margin: "1px",
-        },
         "& p": {
             marginRight: "30px",
         },
@@ -31,15 +25,27 @@ const useStyle = makeStyles({
     },
 
     button__group: {
-        display: "flex",
+        display:"flex",
         "& button": {
-            minWidth: "25px",
-            minHeight: "20px",
+            height: "1rem",
+            border: "1px solid rgba(0, 0, 0, .23)",
+            padding: "1px",
+            margin: "1px",
+            "@media (max-width: 1280px)":{
+                minWidth:pxToRem(10)
+            },
+            "@media (min-width: 1280px)":{
+                minWidth:pxToRem(20)
+            }
+
         }
     },
     button__wrapper:{
         cursor: "pointer"
-    }
+    },
+    complexityMargin:{
+        margin:"0 auto"
+}
 })
 
 
@@ -61,7 +67,7 @@ const ComplexityKeyboard = (state) => {
                 <Typography>
                     Lesson's key set:
                 </Typography>
-                <div>
+                <div className={classes.complexityMargin}>
                     <div className={classes.button__group}>
                         {button(state)}
                     </div>

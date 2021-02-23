@@ -15,8 +15,12 @@ import {makeStyles} from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 import {createMuiTheme} from "@material-ui/core";
 import {ThemeProvider} from "@material-ui/styles";
+import Hidden from "@material-ui/core/Hidden";
+import pxToRem from "./pxToRem.js";
+
 
 const theme=createMuiTheme({
+
     overrides:{
         MuiSlider:{
             colorPrimary:{
@@ -31,14 +35,15 @@ const theme=createMuiTheme({
             root:{
                 backgroundColor:"transparent"
             }
-        }
-    },
+        },
+    }
 })
 
 
 const useStyle = makeStyles({
     root: {
         backgroundColor: "#e0e0e0",
+            minWidth:"777px"
     },
     main:{
         padding:"0px 15px"
@@ -54,10 +59,12 @@ const App = (props) => {
                    onClick={(e) => {handlerClickApp(e, props.isInputAvailable, props.setInputAvailable)}}>
             <Header/>
             <Grid container justify={"flex-end"}>
-                <Grid item xs={2}><Advertising/></Grid>
-                <Grid container item xs={10}>
-                    <Grid item  xs={10} className={classes.main}><Main/></Grid>
-                    <Grid item xs={2}><AsideContainer/></Grid>
+                <Hidden mdDown>
+                    <Grid item  lg={2} ><Advertising/></Grid>
+                </Hidden>
+                <Grid container item xs={12} lg={10}>
+                    <Grid item  xs={10}  className={classes.main}><Main/></Grid>
+                        <Grid item xs={2}><AsideContainer/></Grid>
                 </Grid>
             </Grid>
             <Footer/>

@@ -1,9 +1,11 @@
-export const intupArrInWordArr=(arrNotDisableLetter,newText,punctuation,maxBadKeyInText)=>{
+import {Alphabet, Punctuation} from "../types";
+
+export const inputArrInWordArr=(arrNotDisableLetter:Punctuation,newText:[string],punctuation:Punctuation,maxBadKeyInText:number):[string]=>{
     let counter=0;
     punctuation=punctuation.filter((el,i)=>{
         return el!==undefined
     })
-    if (punctuation[0]!=="")
+    if (punctuation.length!==0)
     {
         for(let step in arrNotDisableLetter){
             for(let step1 in (arrNotDisableLetter[step].word.split(" "))){
@@ -11,7 +13,7 @@ export const intupArrInWordArr=(arrNotDisableLetter,newText,punctuation,maxBadKe
 
                 ++counter
             }
-            if(step>maxBadKeyInText){
+            if(Number(step)>maxBadKeyInText){
                 break
             }
         }
@@ -23,7 +25,7 @@ export const intupArrInWordArr=(arrNotDisableLetter,newText,punctuation,maxBadKe
 
                 ++counter
             }
-            if(step>maxBadKeyInText){
+            if(Number(step)>maxBadKeyInText){
                 break
             }
         }

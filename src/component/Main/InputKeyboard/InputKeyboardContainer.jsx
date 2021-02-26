@@ -1,12 +1,12 @@
 import InputKeyboard from "./InputKeyboard.jsx";
 import {connect} from "react-redux";
-import {setInputAvailable} from "../../../redux/input-reducer.js";
-import {setSpeedType} from "../../../redux/header-reducer.js";
-import {setErrorCount} from "../../../redux/header-reducer.js";
-import {setCurrentLetter} from "../../../redux/header-reducer.js";
-import {setAllText} from "../../../redux/header-reducer.js";
-import {setInitialTime} from "../../../redux/header-reducer.js";
-import {setButtonToKeyboard} from "../../../redux/header-reducer.js";
+import {setInputAvailable} from "../../../redux/input-reducer.ts";
+import {setSpeedType} from "../../../redux/header-reducer";
+import {setErrorCount} from "../../../redux/header-reducer";
+import {setCurrentLetter} from "../../../redux/header-reducer";
+import {setAllText} from "../../../redux/header-reducer";
+import {setInitialTime} from "../../../redux/header-reducer";
+import {setButtonToKeyboard} from "../../../redux/header-reducer";
 
 let mapStateToProps = (state) => {
     return {

@@ -25,7 +25,7 @@ const handleChange = (e,allText,setInput,setInitialTime,initialTime,speed, curre
     }
     else{
         setCurrentLetter(div)
-        setHandleError(setCurrentError,currentError,setErrorCount)
+        setHandleError(div,setCurrentError,currentError,setErrorCount)
     }
     setInput("")
 }

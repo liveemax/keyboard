@@ -3,12 +3,12 @@ import {BrowserRouter} from "react-router-dom";
 import Main from "./component/Main/Main.jsx";
 import Advertising from "./component/Advertising/Advertising.jsx";
 import Footer from "./component/Footer/Footer.jsx";
-import store from "./redux/store.js";
+import store from "./redux/store.ts";
 import Header from "./component/Header/Header.jsx";
 import {Provider} from "react-redux";
 import {connect} from "react-redux";
 import handlerClickApp from "./handlerClickApp.jsx";
-import {setInputAvailable} from "./redux/input-reducer.js";
+import {setInputAvailable} from "./redux/input-reducer.ts";
 import AsideContainer from "./component/Aside/AsideContainer.jsx";
 import Container from "@material-ui/core/Container";
 import {makeStyles} from "@material-ui/core";
@@ -16,11 +16,9 @@ import Grid from "@material-ui/core/Grid";
 import {createMuiTheme} from "@material-ui/core";
 import {ThemeProvider} from "@material-ui/styles";
 import Hidden from "@material-ui/core/Hidden";
-import pxToRem from "./pxToRem.js";
 
 
 const theme=createMuiTheme({
-
     overrides:{
         MuiSlider:{
             colorPrimary:{

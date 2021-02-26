@@ -1,8 +1,8 @@
 import {connect} from "react-redux";
 import {compose} from "redux";
 import HeaderKeyboard from "./HeaderKeyboard.jsx";
-import {setIsKeyboardHidden} from "../../../redux/header-reducer.js";
-import {setNewLanguage} from "../../../redux/header-reducer.js";
+import {setIsKeyboardHidden} from "../../../redux/header-reducer.ts";
+import {setNewLanguage} from "../../../redux/header-reducer.ts";
 let mapStateToProps=(state)=>{
 
     return{

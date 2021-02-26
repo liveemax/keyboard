@@ -1,4 +1,4 @@
-import {getArrayCommonCharacter} from "./getArrayCommonCharacter.jsx";
+import {getArrayCommonCharacter} from "./getArrayCommonCharacter";
 
 let returnArrayCommonCharacter=getArrayCommonCharacter(0,0,0,0,false)
 

@@ -1,6 +1,7 @@
-export const setStateTypeScore=(action)=>{
-    let currentAlphabet=action.alphabet
-    let speed=[],error=[],counter=[],quotient=[],typeScore=[]
+import {Alphabet} from "../types";
+
+export const setStateTypeScore=(currentAlphabet:Alphabet):Alphabet=>{
+    let speed:Array<number>=[],error:Array<number>=[],counter:Array<number>=[],quotient:Array<number>=[],typeScore:Array<number>=[]
     for(let key in currentAlphabet){
         if(currentAlphabet[key].speedType.length===0){
             typeScore[key]=999

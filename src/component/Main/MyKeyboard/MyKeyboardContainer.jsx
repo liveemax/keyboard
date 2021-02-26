@@ -13,7 +13,4 @@ let mapStateToProps =(state)=>{
         buttonToKeyboard:state.headerKeyboard.buttonToKeyboard
     }
 }
-let mapDispatchToProps =(dispatch)=>{
-return{}
-}
-export default connect(mapStateToProps,mapDispatchToProps)(MyKeyboard)
+export default connect(mapStateToProps)(MyKeyboard)

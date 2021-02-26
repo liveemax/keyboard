@@ -55,7 +55,7 @@ const ComplexityKeyboard = (state) => {
         let allButton = [];
         for (const [key, value] of Object.entries(state.currentLang.alphabet)) {
             allButton[key] = <div className={classes.button__wrapper}  onClick={(event) => {
-                state.setValueDisable(event, key)
+                state.setValueDisable(key)
             }} key={key}>
                 <Button  disabled={value.disable}>{value.letter}</Button></div>
         }
@@ -74,7 +74,7 @@ const ComplexityKeyboard = (state) => {
                     <div>
                         <Slider
                             value={state.sliderValue}
-                            onChange={state.setSliderValue}
+                            onChange={(e,value)=>state.setSliderValue(value)}
                             step={1}
                             color={"primary"}
                         />

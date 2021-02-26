@@ -1,14 +1,16 @@
-function getKeyComplexity(currentAlphabet,action){
+import {Alphabet} from "../types";
+
+export const getKeyComplexity=(currentAlphabet:Alphabet,sliderValue:number[]):Alphabet=>{
     let step
     let arrKeys = Object.keys(currentAlphabet)
     let arrKeysLength=Object.keys(currentAlphabet).length
     let numberLetterSteps = 100 /arrKeysLength
     for (step = 1; arrKeysLength!==step; step++) {
-        if(action.valueSlider[0] > numberLetterSteps * step)
+        if(sliderValue[0] > numberLetterSteps * step)
         {
             arrKeys.shift()
         }
-        if (action.valueSlider[1] < (100 - step*numberLetterSteps))
+        if (sliderValue[1] < (100 - step*numberLetterSteps))
         {
             arrKeys.splice(-1,1)
         }
@@ -16,14 +18,13 @@ function getKeyComplexity(currentAlphabet,action){
     step=0;
     for (const [key, value] of Object.entries(currentAlphabet)) {
         if (arrKeys[step] !== key) {
-            currentAlphabet[key].disable = true;
+            currentAlphabet[Number(key)].disable = true;
             step--
         }
         else {
-            currentAlphabet[key].disable = false;
+            currentAlphabet[Number(key)].disable = false;
         }
         step++
     }
     return currentAlphabet
 }
-export default getKeyComplexity

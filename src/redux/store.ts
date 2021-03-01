@@ -4,6 +4,7 @@ import {createStore} from "redux";
 import inputReducer from "./input-reducer";
 import {applyMiddleware} from "redux";
 import thunkMiddleware, {ThunkAction} from "redux-thunk";
+
 let reducers=combineReducers({
 headerKeyboard:headerReducer,
 inputKeyboard:inputReducer,

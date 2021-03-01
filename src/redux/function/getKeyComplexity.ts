@@ -1,4 +1,4 @@
-import {Alphabet} from "../types";
+import {Alphabet} from "../header-reducer";
 
 export const getKeyComplexity=(currentAlphabet:Alphabet,sliderValue:number[]):Alphabet=>{
     let step

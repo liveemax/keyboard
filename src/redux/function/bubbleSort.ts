@@ -1,7 +1,7 @@
-import {Punctuation} from "../types";
+import {Alphabet} from "../header-reducer";
 
 
-export const bubbleSort = (arrNotDisableLetter:Punctuation):Punctuation => {
+export const bubbleSort = (arrNotDisableLetter:Alphabet):Alphabet => {
 
     for (let i = 0, endI = arrNotDisableLetter.length-1; i < endI; i++) {
         let wasSwap = false;

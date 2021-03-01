@@ -5,26 +5,28 @@ import {setSpeedInArray} from "./function/setSpeedInArray";
 import {setStateTypeScore} from "./function/setStateTypeScore";
 import {setTypeCounterInArray} from "./function/setTypeCounterInArray";
 import {BaseThunkType, InferActionsTypes} from "./store";
-import {Alphabet, Punctuation} from "./types";
 import {getKeyComplexity} from "./function/getKeyComplexity";
 
 type InitialState = typeof initialState
 type ActionType = InferActionsTypes<typeof actions>
 type ThunkType = BaseThunkType<ActionType>
+export type Alphabet=typeof alphabet
 
-let alphabet:any = JSON.parse(JSON.stringify(getAlphabet()))
+
+let alphabet = JSON.parse(JSON.stringify(getAlphabet()))
 const initialState = {
     ...alphabet,
-    currentLang: ["ENGLISH"] as Array<string>,
-    isKeyboardHidden: false as boolean,
-    sliderValue: [0, 100] as Array<number>,
-    currentLetter: " " as String,
-    allText: [""] as Array<string>,
-    howMachSpeedKey: 30 as number,
-    sortedNotDisableScoreAlphabet: "" as string|[],
-    buttonToKeyboard: "" as string,
-    initialTime: 0 as number
+    currentLang: ["ENGLISH"],
+    isKeyboardHidden: false,
+    sliderValue: [0, 100],
+    currentLetter: " ",
+    allText: [""],
+    howMachSpeedKey: 30,
+    sortedNotDisableScoreAlphabet: "" as string|Alphabet,
+    buttonToKeyboard: "",
+    initialTime: 0
 }
+
 const headerReducer = (state = initialState, action: ActionType): InitialState => {
     let stateCopy: typeof initialState = JSON.parse(JSON.stringify(state));
     let currentIndex: string
@@ -103,12 +105,12 @@ const headerReducer = (state = initialState, action: ActionType): InitialState =
 }
 
 export const actions = {
-    selectLanguageAC: (newLanguage: [string]) => ({type: 'SELECT_LANGUAGE', newLanguage} as const),
+    selectLanguageAC: (newLanguage: string[]) => ({type: 'SELECT_LANGUAGE', newLanguage} as const),
     selectKeyboardAC: (isKeyboardHidden: boolean) => ({type: 'SELECT_KEYBOARD', isKeyboardHidden} as const),
-    selectSpeedTypeAC: (speedType: number) => ({type: 'SELECT_SPEED_TYPE', speedType} as const),
+    selectSpeedTypeAC: (speedType: string) => ({type: 'SELECT_SPEED_TYPE', speedType} as const),
     selectErrorCountAC: () => ({type: 'SELECT_ERROR_COUNT'} as const),
     selectCurrentLetterAC: (currentLetter: string) => ({type: 'SELECT_CURRENT_LETTER', currentLetter} as const),
-    selectAllTextAC: (newText: Array<string>, arrNotDisableLetter: Punctuation) => ({
+    selectAllTextAC: (newText: Array<string>, arrNotDisableLetter: Alphabet) => ({
         type: 'SET_ALL_TEXT',
         newText,
         arrNotDisableLetter
@@ -147,7 +149,7 @@ export const setValueDisable = (valueDisable: string): ThunkType => {
 }
 
 
-export const setSpeedType = (speedType: number): ThunkType => {
+export const setSpeedType = (speedType: string): ThunkType => {
     return (dispatch) => {
         (dispatch(actions.selectSpeedTypeAC(speedType)))
     }
@@ -178,7 +180,7 @@ export const setIsKeyboardHidden = (isKeyboardHidden: boolean): ThunkType => {
         dispatch(actions.selectKeyboardAC(isKeyboardHidden))
     }
 }
-export const setNewLanguage = (newLanguage: [string]): ThunkType => {
+export const setNewLanguage = (newLanguage: string[]): ThunkType => {
     return (dispatch) => {
         (dispatch(actions.selectLanguageAC(newLanguage)))
     }

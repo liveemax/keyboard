@@ -1,6 +1,6 @@
 import {generateText} from "./generateText";
-import {Alphabet} from "../types";
 import {sortTextByScore} from "./sortTextByScore";
+import {Alphabet} from "../header-reducer";
 
 export const getNewText = (alphabet:Alphabet,wordsInAllText:number,maxBadKeyInText:number) => {
     let {arrNotDisableLetter,punctuation}=sortTextByScore(alphabet)

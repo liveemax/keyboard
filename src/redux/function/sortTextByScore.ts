@@ -1,5 +1,5 @@
 import {bubbleSort} from "./bubbleSort";
-import {Alphabet} from "../types";
+import {Alphabet} from "../header-reducer";
 
 
 export const sortTextByScore = (alphabet:Alphabet) => {

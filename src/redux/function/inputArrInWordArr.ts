@@ -1,8 +1,8 @@
-import {Alphabet, Punctuation} from "../types";
+import {Alphabet} from "../header-reducer";
 
-export const inputArrInWordArr=(arrNotDisableLetter:Punctuation,newText:[string],punctuation:Punctuation,maxBadKeyInText:number):[string]=>{
+export const inputArrInWordArr=(arrNotDisableLetter:Alphabet,newText:[string],punctuation:Alphabet,maxBadKeyInText:number):[string]=>{
     let counter=0;
-    punctuation=punctuation.filter((el,i)=>{
+    punctuation=punctuation.filter((el: {})=>{
         return el!==undefined
     })
     if (punctuation.length!==0)

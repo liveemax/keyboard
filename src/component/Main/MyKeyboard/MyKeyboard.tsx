@@ -18,7 +18,7 @@ type root={
         display:string
     },
     isKeyboardHidden:boolean,
-    keyboard:any,
+    keyboard: any,
     currentLang: Array<string>,
     buttonToKeyboard:string
 }

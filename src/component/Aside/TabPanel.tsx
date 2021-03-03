@@ -5,9 +5,8 @@ import Typography from "@material-ui/core/Typography";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
 import {speed} from "./speed";
 import React from "react";
-import {Alphabet} from "../../redux/header-reducer";
 type main={
-    value: Alphabet
+    value: any
 }
 export const TabPanel:React.FC<main>=({value,...props}) => {
     return (

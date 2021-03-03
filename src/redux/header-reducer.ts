@@ -10,7 +10,6 @@ import {getKeyComplexity} from "./function/getKeyComplexity";
 type InitialState = typeof initialState
 type ActionType = InferActionsTypes<typeof actions>
 type ThunkType = BaseThunkType<ActionType>
-export type Alphabet=typeof alphabet
 
 
 let alphabet = JSON.parse(JSON.stringify(getAlphabet()))
@@ -22,7 +21,7 @@ const initialState = {
     currentLetter: " ",
     allText: [""],
     howMachSpeedKey: 30,
-    sortedNotDisableScoreAlphabet: "" as string|Alphabet,
+    sortedNotDisableScoreAlphabet: "" as string|object,
     buttonToKeyboard: "",
     initialTime: 0
 }
@@ -69,7 +68,6 @@ const headerReducer = (state = initialState, action: ActionType): InitialState =
                 currentLetter: action.currentLetter.toUpperCase()
             }
         case 'SELECT_ERROR_COUNT':
-            debugger
             currentIndex = getCurrentIndex(currentAlphabet, stateCopy.currentLetter)
             currentAlphabet[currentIndex].errorCount = currentAlphabet[currentIndex].errorCount + 1
 
@@ -110,12 +108,12 @@ export const actions = {
     selectSpeedTypeAC: (speedType: string) => ({type: 'SELECT_SPEED_TYPE', speedType} as const),
     selectErrorCountAC: () => ({type: 'SELECT_ERROR_COUNT'} as const),
     selectCurrentLetterAC: (currentLetter: string) => ({type: 'SELECT_CURRENT_LETTER', currentLetter} as const),
-    selectAllTextAC: (newText: Array<string>, arrNotDisableLetter: Alphabet) => ({
+    selectAllTextAC: (newText: Array<string>, arrNotDisableLetter: object) => ({
         type: 'SET_ALL_TEXT',
         newText,
         arrNotDisableLetter
     } as const),
-    selectStateTypeScoreAC: (newTypeScore:Alphabet) => ({type: 'SELECT_STATE_TYPE_SCORE', newTypeScore} as const),
+    selectStateTypeScoreAC: (newTypeScore:object) => ({type: 'SELECT_STATE_TYPE_SCORE', newTypeScore} as const),
     selectInitialTime: (initialTime: number) => ({type: 'SELECT_INITIAL_TIME', initialTime} as const),
     selectButtonToKeyboard: (buttonToKeyboard: string) => ({
         type: 'SELECT_BUTTON_TO_KEYBOARD',
@@ -125,13 +123,13 @@ export const actions = {
     selectValueDisable: (valueDisable: string) => ({type: 'SELECT_VALUE_DISABLE', valueDisable} as const)
 }
 
-export const setAllText = (action:{alphabet:Alphabet}): ThunkType => {
+export const setAllText = (alphabet:any): ThunkType => {
     return (dispatch) => {
         const wordsInAllText:number=3
         const maxBadKeyInText:number=5
-        let newTypeScore:Alphabet = setStateTypeScore(action.alphabet)
+        let newTypeScore:object = setStateTypeScore(alphabet.alphabet)
         dispatch(actions.selectStateTypeScoreAC(newTypeScore))
-        let {newText, arrNotDisableLetter} = (getNewText(action.alphabet,wordsInAllText,maxBadKeyInText))
+        let {newText, arrNotDisableLetter} = (getNewText(alphabet.alphabet,wordsInAllText,maxBadKeyInText))
         dispatch(actions.selectAllTextAC(newText, arrNotDisableLetter))
     }
 }

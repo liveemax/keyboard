@@ -1,6 +1,11 @@
-import {Alphabet} from "../../../redux/header-reducer";
 
-const handlerClick=(e: object,allText: Array<string>,setAllText: (alphabet: Alphabet) => void,alphabet: any,setLetter: (letter: number) => void,setInputAvailable: (alphabet: Alphabet) => void,isInputAvailable: boolean,
+const handlerClick=(e: object,
+                    allText: Array<string>,
+                    setAllText: (alphabet: object) => void,
+                    alphabet: any,
+                    setLetter: (letter: number) => void,
+                    setInputAvailable: (inputAvailable: boolean) => void,
+                    isInputAvailable: boolean,
                     setCurrentError: (error: number) => void)=>{
     let form=document.getElementById("form")
     if(!isInputAvailable){

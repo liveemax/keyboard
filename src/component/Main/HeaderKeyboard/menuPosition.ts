@@ -1,5 +1,6 @@
-import React from "react";
-export const menuPosition= (positionMenu:any,setPosition:(positionMenu:any)=>void,setNewLanguage:(newLanguage:string[])=>void)=>{
+export const menuPosition= (positionMenu:any,
+                            setPosition:(positionMenu:any)=>void,
+                            setNewLanguage:(newLanguage:string[]) =>void)=>{
     const open = Boolean(positionMenu);
     const menuOpen = (event:any) => {
         setPosition(event.currentTarget);

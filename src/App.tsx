@@ -1,4 +1,4 @@
-import React from "react";
+import React, {PropsWithChildren, ReactElement, ReactNode} from "react";
 import {BrowserRouter} from "react-router-dom";
 import Main from "./component/Main/Main";
 import Advertising from "./component/Advertising/Advertising";
@@ -50,12 +50,11 @@ const useStyle = makeStyles({
         width:"100%"
     }
 })
-type Ap={
-    props:AppStateType,
-    isInputAvailable:boolean,
-    setInputAvailable:(isInputAvailable:boolean)=>void
+interface root{
+        isInputAvailable: boolean,
+        setInputAvailable: (isInputAvailable: boolean) => void
 }
-const App:React.FC<Ap>=(props) => {
+const App=(props:root)=>{
     const classes = useStyle()
     return (
         <Container maxWidth={false} disableGutters={true} className={classes.root}
@@ -79,7 +78,7 @@ const App:React.FC<Ap>=(props) => {
 const mapStateToProps = (props:AppStateType) => {
     return {
         props: props,
-        isInputAvailable: props.inputKeyboard.isInputAvailable
+        isInputAvailable: props.inputKeyboard.isInputAvailable,
     }
 }
 export const AppContainer = connect(mapStateToProps, {setInputAvailable})(App)

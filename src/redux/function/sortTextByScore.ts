@@ -1,8 +1,7 @@
 import {bubbleSort} from "./bubbleSort";
-import {Alphabet} from "../header-reducer";
 
 
-export const sortTextByScore = (alphabet:Alphabet) => {
+export const sortTextByScore = (alphabet:any) => {
     let arrNotDisableLetter = []
     let arrNotDisablePunkt=[]
     let step=0

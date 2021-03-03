@@ -1,6 +1,5 @@
-import {Alphabet} from "../header-reducer";
 
-export const getKeyComplexity=(currentAlphabet:Alphabet,sliderValue:number[]):Alphabet=>{
+export const getKeyComplexity=(currentAlphabet:any,sliderValue:number[])=>{
     let step
     let arrKeys = Object.keys(currentAlphabet)
     let arrKeysLength=Object.keys(currentAlphabet).length

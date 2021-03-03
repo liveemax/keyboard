@@ -1,6 +1,5 @@
-import {Alphabet} from "../header-reducer";
 
-export const getCurrentIndex=(currentAlphabet:Alphabet,currentLetter:string):string=>{
+export const getCurrentIndex=(currentAlphabet:any,currentLetter:string):string=>{
     let currentIndex
     for(let key in currentAlphabet){
         if(currentAlphabet[key].letter.toString()===currentLetter.toUpperCase())

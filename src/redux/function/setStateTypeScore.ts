@@ -1,6 +1,5 @@
-import {Alphabet} from "../header-reducer";
 
-export const setStateTypeScore=(currentAlphabet:Alphabet):Alphabet=>{
+export const setStateTypeScore=(currentAlphabet:any)=>{
     let speed:Array<number>=[],error:Array<number>=[],counter:Array<number>=[],quotient:Array<number>=[],typeScore:Array<number>=[]
     for(let key in currentAlphabet){
         if(currentAlphabet[key].speedType.length===0){

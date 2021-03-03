@@ -5,6 +5,7 @@ import {TabPanel} from "./TabPanel";
 import Typography from "@material-ui/core/Typography";
 import {useState} from "react";
 import Zoom from "@material-ui/core/Zoom";
+import {handlerClickAside} from "./handlerClickAside";
     const useStyles = makeStyles((theme) => ({
             root: {
                     position:"relative",
@@ -40,13 +41,11 @@ import Zoom from "@material-ui/core/Zoom";
         }
     })
 );
-const handlerClickAside=(e:object,click:number,setClick:(click:number)=>void)=>{
-        setClick(1)
-    }
-    type main={
+
+    type root={
             statistic: object
     }
-const Aside:React.FC<main> = ({statistic,...state}):any => {
+const Aside:React.FC<root> = ({statistic,...state}):any => {
         const [click,setClick]=useState(0.2)
         const classes = useStyles()
             let input = (statistic:object) :Array<string>=> {

@@ -1,7 +1,6 @@
 import {inputArrInWordArr} from "./inputArrInWordArr";
-import {Alphabet} from "../header-reducer";
 
-export const generateText=(arrNotDisableLetter:Alphabet,wordsInAllText:number,punctuation:Alphabet,maxBadKeyInText:number)=>{
+export const generateText=(arrNotDisableLetter:any,wordsInAllText:number,punctuation:any,maxBadKeyInText:number)=>{
     let newText:[string]=[""];
     if(arrNotDisableLetter.length===0){
         newText[0]="ALL BUTTON WAS DISABLE";

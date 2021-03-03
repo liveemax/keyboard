@@ -1,7 +1,6 @@
-import {Alphabet} from "../header-reducer";
 
 
-export const bubbleSort = (arrNotDisableLetter:Alphabet):Alphabet => {
+export const bubbleSort = (arrNotDisableLetter:any):[] => {
 
     for (let i = 0, endI = arrNotDisableLetter.length-1; i < endI; i++) {
         let wasSwap = false;

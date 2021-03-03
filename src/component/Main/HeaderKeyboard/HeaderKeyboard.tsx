@@ -7,7 +7,6 @@ import KeyboardIcon from "@material-ui/icons/Keyboard";
 import {menuPosition} from "./menuPosition";
 import {makeStyles} from "@material-ui/core";
 import {MoreBadKey} from "./MoreBadKey";
-import {Alphabet} from "../../../redux/header-reducer";
 
 const useStyle = makeStyles({
     header: {
@@ -31,9 +30,9 @@ const useStyle = makeStyles({
     }
 })
 type root={
-    allLang:Alphabet,
+    allLang:object,
     isKeyboardHidden:boolean,
-    badLetter:string|Alphabet,
+    badLetter:string|object,
     allText:Array<string>,
     currentLetter:string,
     setNewLanguage:(newLanguage:string[])=>void,

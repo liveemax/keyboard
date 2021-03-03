@@ -6,7 +6,6 @@ import {useEffect} from "react";
 import Tooltip from "@material-ui/core/Tooltip";
 import Typography from "@material-ui/core/Typography";
 import withStyles from "@material-ui/core/styles/withStyles";
-import {Alphabet} from "../../../redux/header-reducer";
 
 const useStyle = makeStyles({
     moreBadKey: {
@@ -35,7 +34,7 @@ const HtmlTooltip = withStyles((theme) => ({
 type root={
     currentLetter:string,
     allText:Array<string>,
-    badLetter:string|Alphabet,
+    badLetter:any
 }
 
 
@@ -46,7 +45,6 @@ export const MoreBadKey:React.FC<root> = ({currentLetter,allText,badLetter, ...p
     },[allText[0]])
     const classes = useStyle()
     if (badLetter.length !== 0) {
-        debugger
         return (
             <>
                 <span className={classes.moreBadKey}>More bad keys:</span>

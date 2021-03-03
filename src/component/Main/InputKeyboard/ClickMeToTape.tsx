@@ -1,7 +1,6 @@
 import handlerClick from "./handlerClick";
 import React from "react";
 import {makeStyles} from "@material-ui/core";
-import {Alphabet} from "../../../redux/header-reducer";
 const useStyle=makeStyles({
     tapeToInput:{
     position: "absolute",
@@ -16,8 +15,8 @@ const useStyle=makeStyles({
 type root={
     allText: Array<string>,
     isInputAvailable: boolean,
-    alphabet:any,
-    setAllText:(alphabet:Alphabet)=>void,
+    alphabet:object,
+    setAllText:(alphabet:object)=>void,
     setInputAvailable:(isInputAvailable:boolean)=>void,
     setLetter:(letter:number)=>void
     setCurrentError:(error:number)=>void

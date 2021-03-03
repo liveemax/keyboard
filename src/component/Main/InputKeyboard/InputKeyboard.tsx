@@ -116,7 +116,7 @@ const InputKeyboard: React.FC<root> = (props) => {
                    onChange={(e) => {
                        handleChange({e:e, allText:props.allText, setInput:setInput, setInitialTime:props.setInitialTime, initialTime:props.initialTime, currentLetter:currentLetter, dispatch:dispatch, setLetter:setLetter,
                            setAllText:props.setAllText, alphabet:props.alphabet, setCurrentError:setCurrentError, currentError:currentError, setSpeedType:props.setSpeedType, setErrorCount:props.setErrorCount, setCurrentLetter:props.setCurrentLetter})
-                   }}/>)
+                   }}/>
             <div className={classes.tape}>
 
 
